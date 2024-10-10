@@ -1,10 +1,10 @@
+import { Component } from 'react'
+import InputForm from './InputForm'
 
-const App = () => {
-  
-  return(
-    <>
-      <h1>Hello world</h1>
-    </>
-  );
-};
-export default App;
+export default class App extends Component {
+  render() {
+    return (
+      <InputForm/>
+    )
+  }
+}
