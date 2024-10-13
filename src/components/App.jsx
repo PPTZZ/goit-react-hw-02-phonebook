@@ -3,7 +3,7 @@ import InputForm from './InputForm';
 import Search from './Search';
 import Contacts from './Contacts';
 import { nanoid } from 'nanoid';
-import { Stack } from '@mui/material';
+import { Alert, Stack } from '@mui/material';
 
 export default class App extends Component {
   state = {
@@ -26,13 +26,15 @@ export default class App extends Component {
       .map(contact => contact.name.toLocaleLowerCase())
       .includes(data.name.toLocaleLowerCase());
     {
-      found
-        ? alert('Mai baga o fisa')
-        : this.setState(prevState => {
-            return {
-              contacts: [...prevState.contacts, contactToAdd],
-            };
-          });
+      found ? (
+        alert(`${data.name} is already a contact, pleast try something else`)
+      ) : (
+        this.setState(prevState => {
+          return {
+            contacts: [...prevState.contacts, contactToAdd],
+          };
+        })
+      );
     }
   };
   handleSearchChange = e => {
@@ -51,9 +53,13 @@ export default class App extends Component {
     return (
       <>
         <Search onSearchChange={this.handleSearchChange} />
-        <Stack  direction='row' width='100vw' height='calc(100vh - 90px)' backgroundColor='background.default'>
-        <InputForm onFormSubmit={this.handleSubmit}/>
-        <Contacts contacts={fileteredContacts} onDelete={this.handleDelete} />
+        <Stack
+          direction='row'
+          width='100vw'
+          height='calc(100vh - 90px)'
+          backgroundColor='background.default'>
+          <InputForm onFormSubmit={this.handleSubmit} />
+          <Contacts contacts={fileteredContacts} onDelete={this.handleDelete} />
         </Stack>
       </>
     );

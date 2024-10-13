@@ -40,7 +40,7 @@ export default class InputForm extends Component {
               id='name-input'
               type='text'
               name='name'
-              InputBaseComponentProps={{pattern:"^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"}}
+              inputbasecomponentprops={{pattern:"^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"}}
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan."
               required
             />
@@ -49,7 +49,7 @@ export default class InputForm extends Component {
               label='Phone'
               type='number'
               name='number'
-              InputBaseComponentProps={{pattern:" +?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}"}}
+              inputbasecomponentprops={{pattern:" +?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}"}}
               title='Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
               required
             />
