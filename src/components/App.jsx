@@ -2,6 +2,7 @@ import { Component } from 'react';
 import InputForm from './InputForm';
 import Search from './Search';
 import Contacts from './Contacts';
+import { nanoid } from 'nanoid';
 
 export default class App extends Component {
   state = {
@@ -11,29 +12,46 @@ export default class App extends Component {
       { id: 2, name: 'Eden Clements', number: '645-17-79' },
       { id: 3, name: 'Annie Copeland', number: '227-91-26' },
     ],
-    filter:''
+    filter: '',
   };
-  handleSubmit = (data) => {
-    const id = this.state.contacts.length > 0 ? this.state.contacts.length : 0
+  handleSubmit = data => {
+    const id = nanoid(10);
     const contactToAdd = {
-      id:id,
-      name:data.name,
-      number:data.number
+      id: id,
+      name: data.name,
+      number: data.number,
+    };
+    const found = this.state.contacts
+      .map(contact => contact.name.toLocaleLowerCase())
+      .includes(data.name.toLocaleLowerCase());
+    {
+      found
+        ? alert('Mai baga o fisa')
+        : this.setState(prevState => {
+            return {
+              contacts: [...prevState.contacts, contactToAdd],
+            };
+          });
     }
-    this.setState((prevState)=>{
-      return{
-        contacts: [ ...prevState.contacts, contactToAdd]
-      }
-    })
-    
+  };
+  handleSearchChange = e => {
+    this.setState({ filter: e.target.value });
+  };
+
+  handleDelete = data => {
+    this.setState({ contacts: data });
   };
   render() {
-    const {contacts} = this.state
+    const fileteredContacts = this.state.contacts.filter(contact => {
+      return contact.name
+        .toLocaleLowerCase()
+        .includes(this.state.filter.toLocaleLowerCase());
+    });
     return (
       <>
-        <Search />
-        <InputForm contacts={contacts} onFormSubmit={this.handleSubmit}/>
-        <Contacts contacts={contacts}/>
+        <Search onSearchChange={this.handleSearchChange} />
+        <InputForm onFormSubmit={this.handleSubmit} />
+        <Contacts contacts={fileteredContacts} onDelete={this.handleDelete} />
       </>
     );
   }

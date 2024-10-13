@@ -12,6 +12,7 @@ export default class InputForm extends Component {
   handleSubmit = e => {
 	e.preventDefault();
 	this.props.onFormSubmit(this.state)
+  e.target.reset()
   };
 
   handleChange = e => {
@@ -58,6 +59,5 @@ export default class InputForm extends Component {
 }
 
 InputForm.propTypes = {
-  contacts: PropTypes.array,
   onFormSubmit: PropTypes.func,
 };
