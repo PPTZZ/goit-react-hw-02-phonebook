@@ -3,6 +3,7 @@ import InputForm from './InputForm';
 import Search from './Search';
 import Contacts from './Contacts';
 import { nanoid } from 'nanoid';
+import { Stack } from '@mui/material';
 
 export default class App extends Component {
   state = {
@@ -50,8 +51,10 @@ export default class App extends Component {
     return (
       <>
         <Search onSearchChange={this.handleSearchChange} />
-        <InputForm onFormSubmit={this.handleSubmit} />
+        <Stack  direction='row' width='100vw' height='calc(100vh - 90px)' backgroundColor='background.default'>
+        <InputForm onFormSubmit={this.handleSubmit}/>
         <Contacts contacts={fileteredContacts} onDelete={this.handleDelete} />
+        </Stack>
       </>
     );
   }

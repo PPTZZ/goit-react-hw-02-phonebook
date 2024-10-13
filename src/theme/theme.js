@@ -10,7 +10,8 @@ export let theme = createTheme({
       main: '#c6a969',
     },
     background: {
-      default: '#ffffec',
+      default: '#F0F0F0',
+      white:'#fff'
     },
     text: {
       primary: '#2d2d2d',
